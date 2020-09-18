@@ -246,3 +246,59 @@ Mitigation Flags:
 Sources:  
 https://connormcgarr.github.io/examining-xfg/  
 https://www.crowdstrike.com/blog/state-of-exploit-development-part-2/  
+  
+## Mitigation Flags Statistics  
+On my local Windows 10 RS5 there are 316 processes running at the time of the check.  
+Here is the number of processes that enable each mitigation policy:  
+
+Mitigation Flag | Number Of Processes | Examples
+--- | --- | ---
+ControlFlowGuardEnabled | 250 | chrome.exe, svchost.exe, lsass.exe
+ControlFlowGuardExportSuppressionEnabled | 5 | vmcompute.exe, vmwp.exe, MicrosoftEdgeCP.exe
+ControlFlowGuardStrict | 10 | svchost.exe, vmcompute.exe, vmwp.exe
+DisallowStrippedImages | 26 | dllhost.exe, MicrosoftEdge.exe
+ForceRelocateImages | 36 | dllhost.exe, MicrosoftEdge.exe, fontdrvhost.exe
+HighEntropyASLREnabled | 281 | vmmem, svchost.exe
+StackRandomizationDisabled | 5 | BCClipboard.exe, vcpkgsrv.exe
+ExtensionPointDisable | 84 | chrome.exe, services.exe, svchost.exe
+DisableDynamicCode | 25 | MicrosoftEdge.exe, chrome.exe, svchost.exe
+DisableDynamicCodeAllowOptOut | 0 |
+DisableDynamicCodeAllowRemoteDowngrade | 3 | MicrosoftEdge.exe, MicrosoftEdgeCP.exe
+AuditDisableDynamicCode | 86 | svchost.exe, fintdrvhost.exe
+DisallowWin32kSystemCalls | 65 | chrome.exe, vmmem, vmwp.exe
+AuditDisallowWin32kSystemCalls | 61 | chrome.exe, vmmem, vmwp.exe
+EnableFilteredWin32kAPIs | 4 | fontdrvhost.exe, MicrosoftEdgeSH.exe, MicrosoftEdgeCP.exe
+AuditFilteredWin32kAPIs | 2 | MicrosoftEdgeSH.exe, MicrosoftEdgeCP.exe
+DisableNonSystemFonts | 73 | chrome.exe, vmwp.exe
+AuditNonSystemFontLoading | 6 | fontdrvhost.exe, spoolsv.exe
+PreferSystem32Images | 9 | dllhost.exe, vmmem
+ProhibitRemoteImageMap | 77 | chrome.exe, MicrosoftEdgeSH.exe, MicrosoftEdgeCP.exe
+AuditProhibitRemoteImageMap | 3 | fontdrvhost.exe, spoolsv.exe
+ProhibitLowILImageMap | 74 | chrome.exe, MicrosoftEdgeSH.exe, MicrosoftEdgeCP.exe
+AuditProhibitLowILImageMap | 3 | fontdrvhost.exe, spoolsv.exe
+SignatureMitigationOptIn | 79 | chrome.exe, MicrosoftEdgeSH.exe, MicrosoftEdgeCP.exe
+AuditBlockNonMicrosoftBinaries | 86 | svchost.exe, fontdrvhost.exe
+AuditBlockNonMicrosoftBinariesAllowStore | 0 |
+LoaderIntegrityContinuityEnabled | 7 | dllhost.exe, MicrosoftEdgeSH.exe
+AuditLoaderIntegrityContinuity | 7 | dllhost.exe, MicrosoftEdgeSH.exe
+EnableModuleTamperingProtection | 3 | MicrosoftEdgeSH.exe, browser_broker.exe, RuntimeBroker.exe
+EnableModuleTamperingProtectionNoInherit | 1 | browser_broker.exe
+RestrictIndirectBranchPrediction | 64 | chrome.exe, MicrosoftEdgeSH.exe, MicrosoftEdgeCP.exe
+IsolateSecurityDomain | 0 |
+EnableExportAddressFilter | 0 | 
+AuditExportAddressFilter | 0 |
+EnableExportAddressFilterPlus | 0 |
+AuditExportAddressFilterPlus | 0 |
+EnableRopStackPivot | 0 |
+AuditRopStackPivot | 0 |
+EnableRopCallerCheck | 0 |
+AuditRopCallerCheck | 0 |
+EnableRopSimExec | 0 |
+AuditRopSimExec | 0 |
+EnableImportAddressFilter | 0 |
+AuditImportAddressFilter | 0 |
+DisablePageCombine | 0 |
+SpeculativeStoreBypassDisable | 1 | System
+
+* Export address filter, import address filter and ROP mitigations are not enabled by default for any process and need to be enabled manually through Windows Defender
+* CET mitigations are not shown here because current hardware doesn't support CET yet so enabling the flags will have no effect at this point
