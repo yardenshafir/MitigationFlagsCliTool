@@ -302,3 +302,4 @@ SpeculativeStoreBypassDisable | 1 | System
 
 * Export address filter, import address filter and ROP mitigations are not enabled by default for any process and need to be enabled manually through Windows Defender
 * CET mitigations are not shown here because current hardware doesn't support CET yet so enabling the flags will have no effect at this point
+* XFG is not shown because it does not exist on Windows 10 RS5
